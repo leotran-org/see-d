@@ -7,11 +7,12 @@ const Navbar = () => {
   const [language, setLanguage] = useState("vi");
 
   const navigation = [
-    { name: "Trang chủ", href: "#home" },
+    { name: "Trang chủ", href: "/" },
     { name: "Giới thiệu", href: "#about" },
     { name: "Chương trình", href: "#programs" },
     { name: "Phương pháp", href: "#methodology" },
     { name: "Đội ngũ", href: "#team" },
+    { name: "Tin tức", href: "/news" },
     { name: "Liên hệ", href: "#contact" }
   ];
 
