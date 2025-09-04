@@ -8,8 +8,15 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="text-2xl font-bold mb-4">
-              <span className="text-secondary">SEE-D</span> Academy
+            <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/4a4cbe50-33ef-4af1-a79c-8920cb692bb2.png" 
+                alt="SEE-D Academy Logo"
+                className="h-8 w-auto mr-3 brightness-0 invert"
+              />
+              <div className="text-2xl font-bold">
+                <span className="text-secondary">SEE-D</span> Academy
+              </div>
             </div>
             <p className="text-primary-foreground/80 mb-6 leading-relaxed">
               Hệ điều hành năng lực cho tương lai nghề nghiệp. 

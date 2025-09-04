@@ -21,6 +21,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
+            <img 
+              src="/lovable-uploads/4a4cbe50-33ef-4af1-a79c-8920cb692bb2.png" 
+              alt="SEE-D Academy Logo"
+              className="h-10 w-auto mr-3"
+            />
             <div className="text-2xl font-bold">
               <span className="hero-text-gradient">SEE-D</span>
             </div>

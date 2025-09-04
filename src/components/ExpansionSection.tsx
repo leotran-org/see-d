@@ -37,11 +37,11 @@ const ExpansionSection = () => {
                 <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                   <div className="bg-card rounded-xl p-8 border border-border card-hover">
                     <div className="flex items-center mb-6">
-                      <div className={`w-12 h-12 bg-${phase.color} rounded-lg flex items-center justify-center mr-4`}>
+                      <div className={`w-12 h-12 ${phase.color === 'primary' ? 'bg-primary' : 'bg-secondary'} rounded-lg flex items-center justify-center mr-4`}>
                         <Calendar className="w-6 h-6 text-primary-foreground" />
                       </div>
                       <div>
-                        <div className={`text-${phase.color} font-bold text-lg`}>
+                        <div className={`${phase.color === 'primary' ? 'text-primary' : 'text-secondary'} font-bold text-lg`}>
                           {phase.period}
                         </div>
                         <h3 className="text-2xl font-bold text-card-foreground">
@@ -56,14 +56,14 @@ const ExpansionSection = () => {
 
                     <div className="space-y-4">
                       <div className="flex items-center">
-                        <Target className={`w-5 h-5 text-${phase.color} mr-2`} />
+                        <Target className={`w-5 h-5 ${phase.color === 'primary' ? 'text-primary' : 'text-secondary'} mr-2`} />
                         <span className="text-card-foreground font-medium">Mục tiêu địa điểm:</span>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                         {phase.cities.map((city, cityIndex) => (
                           <div 
                             key={cityIndex}
-                            className={`bg-${phase.color}-light/20 text-${phase.color} px-3 py-2 rounded-lg text-sm font-medium text-center`}
+                            className={`${phase.color === 'primary' ? 'bg-primary-light text-primary' : 'bg-secondary-light text-secondary'} px-3 py-2 rounded-lg text-sm font-medium text-center`}
                           >
                             {city}
                           </div>
@@ -77,7 +77,7 @@ const ExpansionSection = () => {
                   <div className="relative">
                     <div className="w-64 h-64 mx-auto bg-gradient-to-br from-primary-light to-secondary-light rounded-full flex items-center justify-center">
                       <div className="w-48 h-48 bg-white rounded-full flex items-center justify-center shadow-lg">
-                        <MapPin className={`w-24 h-24 text-${phase.color}`} />
+                        <MapPin className={`w-24 h-24 ${phase.color === 'primary' ? 'text-primary' : 'text-secondary'}`} />
                       </div>
                     </div>
                     
