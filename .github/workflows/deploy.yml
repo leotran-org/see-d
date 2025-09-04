@@ -35,8 +35,6 @@ jobs:
           npm run build
           # SPA fallback so client-side routes work on reload:
           cp dist/index.html dist/404.html
-          # Add CNAME for your custom domain (edit this line):
-          echo "www.see-d.biz" > dist/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
