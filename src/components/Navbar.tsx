@@ -12,7 +12,7 @@ const Navbar = () => {
     { name: "Chương trình", href: "#programs" },
     { name: "Phương pháp", href: "#methodology" },
     { name: "Đội ngũ", href: "#team" },
-    { name: "Tin tức", href: "/news" },
+    { name: "Tin tức", href: "#news" },
     { name: "Liên hệ", href: "#contact" }
   ];
 
