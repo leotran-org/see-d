@@ -1,7 +1,12 @@
 import { Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 const TeamSection = () => {
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const mentors = [
     {
       name: "Nguyễn Song Toàn",
@@ -49,7 +54,7 @@ const TeamSection = () => {
           {mentors.map((mentor, index) => (
             <div 
               key={index}
-              className="bg-card rounded-xl p-6 card-hover border border-border text-center scroll-animate"
+              className={`bg-card rounded-xl p-6 card-hover border border-border text-center scroll-animate${mounted ? "show" : ""}`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative mb-6">
