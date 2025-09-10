@@ -7,6 +7,7 @@ import MethodologySection from "@/components/MethodologySection";
 import ParticipantsSection from "@/components/ParticipantsSection";
 import ExpansionSection from "@/components/ExpansionSection";
 import TeamSection from "@/components/TeamSection";
+import NewsSection from "@/components/NewsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -52,6 +53,9 @@ const Index = () => {
         </section>
         <section id="team">
           <TeamSection />
+        </section>
+        <section id="news">
+            <NewsSection />
         </section>
         <section id="contact">
           <ContactSection />

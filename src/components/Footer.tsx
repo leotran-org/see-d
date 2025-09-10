@@ -133,6 +133,9 @@ const Footer = () => {
               <a href="#" className="text-primary-foreground/60 hover:text-secondary text-sm transition-colors">
                 Điều khoản sử dụng
               </a>
+              <a href="/login" className="text-primary-foreground/60 hover:text-secondary text-sm transition-colors">
+                Login
+              </a>
             </div>
           </div>
         </div>
