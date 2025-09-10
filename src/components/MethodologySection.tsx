@@ -1,6 +1,13 @@
 import { Brain, Users, Briefcase } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const MethodologySection = () => {
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+
+
   const steps = [
     {
       icon: Brain,
@@ -45,7 +52,7 @@ const MethodologySection = () => {
               return (
                 <div 
                   key={index}
-                  className="text-center relative scroll-animate"
+                  className={`text-center relative scroll-animate${mounted ? "show" : ""}`}
                   style={{ animationDelay: `${index * 0.3}s` }}
                 >
                   <div className="bg-card rounded-xl p-8 card-hover border border-border">
