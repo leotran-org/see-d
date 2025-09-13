@@ -21,7 +21,7 @@ function SkeletonCard() {
 }
 
 function NewsCard({ item }: { item: SeedPostMeta }) {
-  const href = `/news/${item.slug}`;
+  const href = `/post/${item.slug}`;
   const date = formatDate(item.created_at);
 
   return (

@@ -4,14 +4,32 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, User, ArrowRight } from "lucide-react";
+import { Calendar, User, ArrowRight, Plus } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import { useSeedPostMeta } from "@/hooks/use-get-posts-meta";
+import { useDirectusSession } from "@/hooks/use-validate-admin";
 
 const FALLBACK_IMG = "/lovable-uploads/4a4cbe50-33ef-4af1-a79c-8920cb692bb2.png";
+const CREATE_POST_PATH = "/post/new"; // 🔧 Change this if your route differs
 
 const News = () => {
+  const { user, isAuthenticated, validating } = useDirectusSession("/cms-api");
+
+  // Helper to decide if the user is an admin
+  const isAdmin = useMemo(() => {
+    const role = (user as any)?.role;
+    if (!role) return false;
+    return true;
+  }, [user]);
+
+  // Log once we know the auth state
+  useEffect(() => {
+    if (validating) return; // wait until validation finishes
+    if (!isAuthenticated || !user) return;
+    console.log(isAdmin ? "hello admin" : "hello user");
+  }, [validating, isAuthenticated, user, isAdmin]);
+
   const [email, setEmail] = useState("");
   const [visibleCount, setVisibleCount] = useState(6);
   const { toast } = useToast();
@@ -60,6 +78,29 @@ const News = () => {
 
   const visibleItems = sortedItems.slice(0, visibleCount);
   const canLoadMore = visibleCount < sortedItems.length;
+
+  // ————————————————————————————————————————————————
+  // Admin-only Create Post Card
+  // ————————————————————————————————————————————————
+  const AdminCreateCard = () => (
+    <Card className="group hover:shadow-elegant transition-transform duration-300 transform hover:scale-105 border-dashed border-2 border-primary">
+      <Link
+        to={CREATE_POST_PATH}
+        className="flex flex-col items-center justify-center aspect-video rounded-t-lg bg-muted/20 focus:outline-none focus:ring-2 focus:ring-primary hover:bg-muted/10 transition-colors"
+        aria-label="Tạo bài viết mới"
+      >
+        <Plus className="h-14 w-14 mb-3 text-primary group-hover:text-accent transition-colors" />
+        <span className="text-lg font-semibold text-muted-foreground group-hover:text-primary">
+          Tạo bài viết mới
+        </span>
+      </Link>
+      <CardContent className="pt-6">
+        <p className="text-sm text-muted-foreground text-center">
+          Bắt đầu chia sẻ thông tin mới từ SEE-D Academy.
+        </p>
+      </CardContent>
+    </Card>
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -131,9 +172,20 @@ const News = () => {
           ) : (
             <>
               {visibleItems.length === 0 ? (
-                <div className="text-center text-muted-foreground">Chưa có bài viết nào.</div>
+                <div className="">
+                  {isAdmin ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      <AdminCreateCard />
+                    </div>
+                  ) : (
+                    <div className="text-center text-muted-foreground">Chưa có bài viết nào.</div>
+                  )}
+                </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {/* Admin create-post card appears first */}
+                  {isAdmin && <AdminCreateCard />}
+
                   {visibleItems.map((item) => (
                     <Card
                       key={item.id}
@@ -161,7 +213,7 @@ const News = () => {
 
                         {/* Title optionally links to detail page by slug */}
                         {item.slug ? (
-                          <Link to={`/news/${item.slug}`}>
+                          <Link to={`/post/${item.slug}`}>
                             <CardTitle className="text-xl group-hover:text-primary transition-colors">
                               {item.title}
                             </CardTitle>
